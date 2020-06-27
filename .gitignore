@@ -1,0 +1,6 @@
+.DS_Store
+database/mongodb-secret.json
+database/oracle-secret.js
+sdk/sdk.json
+node_modules
+.repl_history
