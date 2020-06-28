@@ -1,4 +1,3 @@
-const { promises } = require("fs")
 
 let total_sch = 0
 let total_col = {}
