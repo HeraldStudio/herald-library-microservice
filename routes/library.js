@@ -19,7 +19,14 @@ exports.route={
      * 
      * @returns {Array<String>} recommendList       推荐书籍
      */
-    async get({cardnum}){
+    async get({token}){
+
+        let authRecord = await this.db.execute(
+            `SELECT CARDNUM FROM XSC_LIBRARY_SHOW_AUTH
+            WHERE TOKEN=:token`,
+            {token}
+        )
+        cardnum = authRecord.rows[0][0]
         let ret = {
             'name':'',
             'firstEntryTime':'',
