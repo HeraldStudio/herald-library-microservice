@@ -74,7 +74,7 @@ exports.route={
             await this.db.execute(`
                 SELECT a.ROWNO,b.ROWNO FROM
                     (SELECT rank()  over (ORDER BY COUNT asc ) ROWNO,R.CARDNUM FROM XSC_LIBRARY_ENTRY_RECORD R ) a,
-                    (SELECT rank() over (ORDER BY COUNT asc ) ROWNO,R.CARDNUM FROM XSC_LIBRARY_ENTRY_RECORD R WHERE COLLEGE=:college ) b
+                    (SELECT rank() over (ORDER BY COUNT desc ) ROWNO,R.CARDNUM FROM XSC_LIBRARY_ENTRY_RECORD R WHERE COLLEGE=:college ) b
                 WHERE a.CARDNUM=b.CARDNUM AND a.CARDNUM=:cardnum
             `,{cardnum,college:entry_record[2]}).then(records=>{
                 ret['entrySchoolRank'] = (records.rows[0][0]/total_sch*100).toFixed(1)
@@ -103,7 +103,7 @@ exports.route={
             await this.db.execute(`
             SELECT a.ROWNO,b.ROWNO FROM
                 (SELECT rank()  over (ORDER BY BCOUNT asc ) ROWNO,R.CARDNUM FROM XSC_LIBRARY_ENTRY_RECORD R ) a,
-                (SELECT rank() over (ORDER BY BCOUNT asc ) ROWNO,R.CARDNUM FROM XSC_LIBRARY_ENTRY_RECORD R WHERE COLLEGE=:college ) b
+                (SELECT rank() over (ORDER BY BCOUNT desc ) ROWNO,R.CARDNUM FROM XSC_LIBRARY_ENTRY_RECORD R WHERE COLLEGE=:college ) b
             WHERE a.CARDNUM=b.CARDNUM AND a.CARDNUM=:cardnum
             `,{cardnum,college:entry_record[2]}).then(records=>{
                 ret['checkoutSchoolRank'] = (records.rows[0][0] / total_sch * 100).toFixed(1)
