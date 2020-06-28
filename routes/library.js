@@ -1,4 +1,4 @@
-
+const moment = require('moment')
 let total_sch = 0
 let total_col = {}
 
@@ -60,7 +60,7 @@ exports.route={
         ).then(records=>{
             if(records.rows.length>0){
                 ret['name'] = records.rows[0][1]
-                ret['firstEntryTime'] = records.rows[0][3]
+                ret['firstEntryTime'] = moment(records.rows[0][3], 'YYYY/M/D HH:mm').format('YYYY年M月D日 HH:mm')
                 ret['entryCount'] = records.rows[0][4]
                 return records.rows[0]
             }else
