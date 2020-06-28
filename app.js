@@ -83,14 +83,14 @@ app.use(require('./middleware/oracle.js'))
   负责为路由处理程序提供 API 以便路由处理程序使用的中间件。
 */
 // 2. 身份认证，为下面 redis 缓存提供了加解密函数
-app.use(require('./middleware/auth'))
+// app.use(require('./middleware/auth'))
 // 3. redis 缓存，为路由处理程序提供手动缓存
 //（开发环境下是假 redis，不需要安装redis）
 // app.use(require('./middleware/redis'))
 // 4. 权限控制
-app.use(require('./middleware/permission'))
+// app.use(require('./middleware/permission'))
 // 5. 用户信息
-app.use(require('./middleware/user'))
+// app.use(require('./middleware/user'))
 
 /**
   ## F. 路由层
